@@ -1,0 +1,19 @@
+{
+  "name": "central-admin-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "mui-structure",
+    "backend"
+  ],
+  "scripts": {
+    "install:all": "npm install --workspaces",
+    "dev": "concurrently --kill-others-on-fail \"npm run dev --workspace=frontend\" \"npm run dev --workspace=backend\"",
+    "test": "npm test --workspaces"
+  },
+  "devDependencies": {
+    "concurrently": "9.2.0",
+    "prettier": "3.5.3"
+  }
+}

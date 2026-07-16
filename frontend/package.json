@@ -1,0 +1,36 @@
+{
+  "name": "@project/frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.0",
+    "@mui/icons-material": "6.4.7",
+    "@mui/material": "6.4.7",
+    "@mui/x-data-grid": "7.28.3",
+    "@project/mui-structure": "*",
+    "axios": "1.8.4",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.28.1",
+    "recharts": "2.12.7"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "6.6.3",
+    "@testing-library/react": "16.3.0",
+    "@testing-library/user-event": "14.6.1",
+    "@vitejs/plugin-react": "4.4.1",
+    "@vitest/coverage-v8": "3.2.4",
+    "fast-check": "3.23.2",
+    "jsdom": "26.1.0",
+    "msw": "2.7.5",
+    "vite": "6.3.5",
+    "vitest": "3.2.4"
+  }
+}
