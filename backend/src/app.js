@@ -44,7 +44,8 @@ app.use(
 );
 
 // 3. express.json — parse application/json request bodies
-app.use(express.json());
+// Raise the limit to 10mb to accommodate Base64-encoded product images
+app.use(express.json({ limit: '10mb' }));
 
 // 4. cookieParser — parse Cookie header and populate req.cookies
 app.use(cookieParser());

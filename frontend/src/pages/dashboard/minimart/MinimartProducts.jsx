@@ -133,16 +133,27 @@ export default function MinimartProducts() {
         category: form.category,
         image: form.image,
       };
+      let saved;
       if (editId) {
-        await axiosInstance.put(`${API}/${editId}`, payload);
+        const res = await axiosInstance.put(`${API}/${editId}`, payload);
+        saved = res.data;
+        // Update the row in place immediately — no flicker
+        setProducts((prev) => prev.map((p) => (p._id === editId ? saved : p)));
       } else {
-        await axiosInstance.post(API, payload);
+        const res = await axiosInstance.post(API, payload);
+        saved = res.data;
+        // Prepend the new product immediately
+        setProducts((prev) => [saved, ...prev]);
       }
       setOpen(false);
       setError('');
-      fetchProducts();
-    } catch {
-      setError('Failed to save product.');
+    } catch (err) {
+      const msg =
+        err.response?.data?.error ||
+        err.response?.data?.message ||
+        err.message ||
+        'Failed to save product.';
+      setError(msg);
     } finally {
       setLoading(false);
     }
@@ -152,9 +163,15 @@ export default function MinimartProducts() {
     if (!window.confirm('Delete this product?')) return;
     try {
       await axiosInstance.delete(`${API}/${id}`);
-      fetchProducts();
-    } catch {
-      setError('Failed to delete product.');
+      // Remove from grid immediately
+      setProducts((prev) => prev.filter((p) => p._id !== id));
+    } catch (err) {
+      const msg =
+        err.response?.data?.error ||
+        err.response?.data?.message ||
+        err.message ||
+        'Failed to delete product.';
+      setError(msg);
     }
   }
 
